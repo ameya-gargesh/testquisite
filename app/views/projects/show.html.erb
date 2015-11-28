@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Project -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @project.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_completed) %>:</strong></dt>
+  <dd><%= @project.is_completed %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:completed_on) %>:</strong></dt>
+  <dd><%= @project.completed_on %></dd>
+</dl>
 
-<p>
-  <strong>Is completed:</strong>
-  <%= @project.is_completed %>
-</p>
-
-<p>
-  <strong>Completed on:</strong>
-  <%= @project.completed_on %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              projects_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_project_path(@project), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              project_path(@project),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
