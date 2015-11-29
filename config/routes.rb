@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :suites
+  resources :statuses
+  resources :settings
   resources :projects
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
