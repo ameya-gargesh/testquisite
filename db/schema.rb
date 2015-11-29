@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129004600) do
+ActiveRecord::Schema.define(version: 20151129014934) do
+
+  create_table "case_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "label"
+    t.integer  "display_order"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "cases", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "display_order"
+    t.integer  "priority_id"
+    t.integer  "case_type_id"
+    t.integer  "suite_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "cases", ["case_type_id"], name: "index_cases_on_case_type_id"
+  add_index "cases", ["priority_id"], name: "index_cases_on_priority_id"
+  add_index "cases", ["suite_id"], name: "index_cases_on_suite_id"
+
+  create_table "priorities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "label"
+    t.boolean  "is_default"
+    t.integer  "display_order"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"

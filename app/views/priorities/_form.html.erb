@@ -1,0 +1,52 @@
+<%= form_for @priority, :html => { :class => "form-horizontal priority" } do |f| %>
+
+    <% if @priority.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@priority.errors.count, "error") %> prohibited this priority from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @priority.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@priority[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :label, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :label, :class => 'form-control' %>
+    </div>
+    <%= error_span(@priority[:label]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :is_default, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :is_default, :class => 'form-control' %>
+    </div>
+    <%= error_span(@priority[:is_default]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :display_order, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :display_order, :class => 'form-control' %>
+    </div>
+    <%= error_span(@priority[:display_order]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            priorities_path, :class => 'btn btn-default' %>
+
+<% end %>

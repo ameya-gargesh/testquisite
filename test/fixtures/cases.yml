@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  display_order: 1
+  priority_id: 
+  test_case_type_id: 
+  suite_id: 
+
+two:
+  title: MyString
+  display_order: 1
+  priority_id: 
+  test_case_type_id: 
+  suite_id: 

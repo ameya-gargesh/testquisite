@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :cases
+  resources :priorities
+  resources :case_types
   resources :suites
   resources :statuses
   resources :settings

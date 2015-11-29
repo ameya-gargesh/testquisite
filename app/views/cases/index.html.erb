@@ -1,0 +1,44 @@
+<%- model_class = Case -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:display_order) %></th>
+      <th><%= model_class.human_attribute_name(:priority_id) %></th>
+      <th><%= model_class.human_attribute_name(:case_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:suite_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cases.each do |test_case| %>
+      <tr>
+        <td><%= link_to test_case.id, case_path(test_case) %></td>
+        <td><%= test_case.title %></td>
+        <td><%= test_case.display_order %></td>
+        <td><%= test_case.priority_id %></td>
+        <td><%= test_case.case_type_id %></td>
+        <td><%= test_case.suite_id %></td>
+        <td><%=l test_case.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_case_path(test_case), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      case_path(test_case),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_case_path,
+            :class => 'btn btn-primary' %>
